@@ -8,6 +8,8 @@ import jakarta.validation.Valid;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -92,6 +94,11 @@ public class UserController {
     @Column(name = "updated_at")
     @UpdateTimestamp
     private LocalDateTime updatedAt;
+
+    @GetMapping("/page")
+    public Page<User> getUsers(Pageable pageable){
+        return userRepository.findAll(pageable);
+    }
 
 
 }
