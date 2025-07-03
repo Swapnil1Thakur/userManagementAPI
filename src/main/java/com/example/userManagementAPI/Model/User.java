@@ -10,6 +10,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    // ✅ Default constructor (required by JPA)
+    public User() {
+    }
+
     @Override
     public String toString() {
         return "User{" +
