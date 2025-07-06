@@ -4,7 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
-@Entity@Table(name = "users")
+@Entity
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,6 +13,12 @@ public class User {
 
     // ✅ Default constructor (required by JPA)
     public User() {
+    }
+
+    public User(String name, String email) {
+        this.name = name;
+        this.email = email;
+
     }
 
     @Override

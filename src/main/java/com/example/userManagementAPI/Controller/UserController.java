@@ -24,10 +24,6 @@ import java.util.Optional;
 @RequestMapping("/api/users")
 public class UserController {
 
-
-
-
-
     @Autowired
     private UserRepository userRepository;
 
@@ -99,6 +95,9 @@ public class UserController {
     public Page<User> getUsers(Pageable pageable){
         return userRepository.findAll(pageable);
     }
+
+
+
 
 
 }
