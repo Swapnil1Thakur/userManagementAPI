@@ -32,6 +32,11 @@ public class UserController {
         User savedUser = userRepository.save(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
     }
+    @PostMapping("/multiple")
+    public ResponseEntity<List<User>> createMultipleUsers(@RequestBody List<User> users) {
+        List<User> savedUsers = userRepository.saveAll(users);
+        return new ResponseEntity<>(savedUsers, HttpStatus.CREATED);
+    }
 
     @GetMapping
     public List<User> getAllUsers(){
@@ -59,7 +64,7 @@ public class UserController {
     public ResponseEntity<Void> deleteUser (@PathVariable Long id){
         if(userRepository.existsById(id)){
             userRepository.deleteById(id);     //delete the user
-            return ResponseEntity.notFound().build();   //return 204 NOt Found
+            return ResponseEntity.noContent().build();   //204 No Found
         }else{
             return ResponseEntity.notFound().build();    //if user not found, return 404 not found
         }
